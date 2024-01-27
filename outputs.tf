@@ -31,8 +31,8 @@ output "vpc" {
     public_subnet_cidr_blocks = module.vpc.public_subnets_cidr_blocks
     public_subnet_ids         = module.vpc.public_subnets
 
-    default_security_group_id = module.vpc.default_security_group_id
-    # default_security_group_arn = data.aws_security_group.default.arn
+    default_security_group_id = aws_security_group.runner.id
+    # default_security_group_arn = aws_security_group.runner.arn
   }
 }
 
