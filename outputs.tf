@@ -21,7 +21,7 @@ output "vpc" {
   // https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest?tab=outputs
   value = {
     name = module.vpc.name
-    id   = module.vpc.name
+    id   = module.vpc.vpc_id
     cidr = module.vpc.vpc_cidr_block
     azs  = module.vpc.azs
 
