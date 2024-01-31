@@ -6,6 +6,21 @@ data "aws_iam_policy_document" "runner" {
   }
 
   statement {
+    effect = "Allow"
+    actions = [
+    "iam:GetRole",
+    "iam:PassRole"
+    ]
+    resources = ["*"]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = ["ecs:*"]
+    resources = ["*"]
+  }
+
+  statement {
     effect    = "Allow"
     actions   = ["logs:*"]
     resources = ["*"]
