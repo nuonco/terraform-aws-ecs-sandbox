@@ -7,8 +7,6 @@ output "runner" {
 }
 
 output "ecs_cluster" {
-  // NOTE: these are declared here -
-  // https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/latest?tab=outputs
   value = {
     arn  = module.ecs_cluster.cluster_arn,
     id   = module.ecs_cluster.cluster_id,
@@ -33,6 +31,8 @@ output "vpc" {
 
     default_security_group_id = aws_security_group.runner.id
     # default_security_group_arn = aws_security_group.runner.arn
+    db_subnet_group_name = module.vpc.database_subnet_group_name
+    db_subnet_group_id = module.vpc.database_subnet_group
   }
 }
 

@@ -38,11 +38,6 @@ variable "tags" {
 variable "region" {
   type        = string
   description = "The region to launch the cluster in"
-
-  validation {
-    condition     = contains(["us-east-1", "us-east-2", "us-west-1", "us-west-2", ], var.region)
-    error_message = "${var.region} is currently unsupported"
-  }
 }
 
 // NOTE: if you would like to create an internal load balancer, with TLS, you will have to use the public domain.
