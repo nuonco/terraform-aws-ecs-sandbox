@@ -17,9 +17,9 @@ Resources:
         Ref: RoleName
       Tags:
         - Key: "managed-by"
-          Name: "nuon"
+          Value: "nuon"
         - Key: "nuon-sandbox-type"
-          Name: "aws-ecs"
+          Value: "aws-ecs"
       AssumeRolePolicyDocument:
         Statement:
           - Effect: Allow
