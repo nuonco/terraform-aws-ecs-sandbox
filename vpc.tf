@@ -11,6 +11,7 @@ locals {
       # you can see the math for this /16 here https://www.davidc.net/sites/default/subnets/subnets.html?network=10.128.0.0&mask=16&division=23.ff3100
       public_subnets  = ["10.128.0.0/26", "10.128.0.64/26", "10.128.0.128/26"]
       private_subnets = ["10.128.128.0/24", "10.128.129.0/24", "10.128.130.0/24"]
+      database_subnets = ["10.128.131.0/24", "10.128.132.0/24"]
     }
   }
 }
@@ -29,6 +30,7 @@ module "vpc" {
   azs             = data.aws_availability_zones.available.zone_ids
   private_subnets = local.networks["sandbox"]["private_subnets"]
   public_subnets  = local.networks["sandbox"]["public_subnets"]
+  database_subnets    = local.networks["sandbox"]["database_subnets"]
 
   enable_nat_gateway   = true
   single_nat_gateway   = true
