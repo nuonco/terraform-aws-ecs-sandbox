@@ -1,17 +1,11 @@
 locals {
+  nuon_id        = var.nuon_id
   prefix         = (var.prefix_override != "" ? var.prefix_override : var.nuon_id)
   install_region = var.region
-  tags           = merge({ nuon_id = var.nuon_id }, var.tags)
-  nuon_id        = var.nuon_id
-  cluster_name   = (var.prefix_override != "" ? var.prefix_override : var.nuon_id)
-
-  /* external_dns = { */
-  /*   registry           = "txt" */
-  /*   provider           = "aws" */
-  /*   policy             = "sync" */
-  /*   triggerLoopOnEvent = true */
-  /*   interval           = "15m" */
-  /* } */
+  tags = merge(
+    var.tags,
+    { nuon_id = var.nuon_id },
+  )
 }
 
 variable "prefix_override" {
@@ -19,6 +13,8 @@ variable "prefix_override" {
   description = "The resource prefix to override, otherwise defaults to the nuon install id"
   default     = ""
 }
+
+# Automatically set by Nuon when provisioned.
 
 variable "nuon_id" {
   type        = string
