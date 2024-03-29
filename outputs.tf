@@ -4,6 +4,7 @@ output "runner" {
     odr_iam_role_arn     = module.odr_iam_role.iam_role_arn
     install_iam_role_arn = module.install_iam_role.iam_role_arn
   }
+  description = "A map of runner attributes: runner_iam_role_arn, odr_iam_role_arn, install_iam_role_arn"
 }
 
 output "ecs_cluster" {
@@ -12,6 +13,7 @@ output "ecs_cluster" {
     id   = module.ecs_cluster.cluster_id,
     name = module.ecs_cluster.cluster_name
   }
+  description = "A map of ecs_cluster attributes: arn, id, name."
 }
 
 output "vpc" {
@@ -34,6 +36,7 @@ output "vpc" {
     db_subnet_group_name = module.vpc.database_subnet_group_name
     db_subnet_group_id   = module.vpc.database_subnet_group
   }
+  description = "A map of vpc attributes: name, id, cidr, azs, private_subnet_cidr_blocks, private_subnet_ids, public_subnet_cidr_blocks, public_subnet_ids, default_security_group_id db_subnet_group_name, db_subnet_group_id."
 }
 
 output "account" {
@@ -41,6 +44,7 @@ output "account" {
     id     = data.aws_caller_identity.current.account_id
     region = var.region
   }
+  description = "A map of AWS account attributes: id, region"
 }
 
 output "ecr" {
@@ -51,6 +55,7 @@ output "ecr" {
     registry_id     = module.ecr.repository_registry_id
     registry_url    = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${var.region}.amazonaws.com"
   }
+  description = "A map of ECR attributes: repository_url, repository_arn, repository_name, registry_id, registry_url."
 }
 
 output "public_domain" {
@@ -59,6 +64,7 @@ output "public_domain" {
     name        = aws_route53_zone.public.name
     zone_id     = aws_route53_zone.public.id
   }
+  description = "A map of public Route53 zone attributes: nameservers, name, zone_id."
 }
 
 output "internal_domain" {
@@ -67,4 +73,5 @@ output "internal_domain" {
     name        = aws_route53_zone.internal.name
     zone_id     = aws_route53_zone.internal.id
   }
+  description = "A map of internal Route53 zone attributes: nameservers, name, zone_id."
 }
