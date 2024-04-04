@@ -1,6 +1,6 @@
 module "ecr" {
   source  = "terraform-aws-modules/ecr/aws"
-  version = "2.1.0"
+  version = ">= 2.1.0"
 
   create                                    = true
   create_repository                         = true
