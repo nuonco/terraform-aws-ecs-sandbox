@@ -60,9 +60,9 @@ output "ecr" {
 
 output "public_domain" {
   value = {
-    nameservers = aws_route53_zone.public[0].name_servers
-    name        = aws_route53_zone.public[0].name
-    zone_id     = aws_route53_zone.public[0].id
+    nameservers = var.enable_public_route53_zone ? aws_route53_zone.public[0].name_servers : []
+    name        = var.enable_public_route53_zone ? aws_route53_zone.public[0].name : ""
+    zone_id     = var.enable_public_route53_zone ? aws_route53_zone.public[0].id : ""
   }
   description = "A map of public Route53 zone attributes: nameservers, name, zone_id."
 }
