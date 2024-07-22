@@ -6,6 +6,7 @@ locals {
     var.tags,
     { nuon_id = var.nuon_id },
   )
+  enable_public_route53_zone = tobool(var.enable_public_route53_zone)
 }
 
 variable "prefix_override" {
@@ -45,4 +46,10 @@ variable "public_root_domain" {
 variable "runner_install_role" {
   type        = string
   description = "The role that is used to install the runner, and should be granted access."
+}
+
+variable "enable_public_route53_zone" {
+  type        = string
+  default     = "true"
+  description = "Provision a public Route53 zone."
 }
