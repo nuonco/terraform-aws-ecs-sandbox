@@ -37,6 +37,19 @@ data "aws_iam_policy_document" "runner_install_trust" {
       ]
     }
   }
+  # NOTE(fd/jm): allow the role to assume itself. The ARN is constructed manually because
+  #              we won't have it until after it's been created
+  statement {
+    effect  = "Allow"
+    actions = ["sts:AssumeRole", ]
+
+    principals {
+      type = "AWS"
+      identifiers = [
+        "arn:aws:iam::${aws.account_id}:role/${data.aws_iam_policy.runner_install.name}"
+      ]
+    }
+  }
 }
 
 module "runner_install_iam_role" {
