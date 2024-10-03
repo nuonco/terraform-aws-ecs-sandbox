@@ -10,11 +10,11 @@ data "aws_iam_policy_document" "runner_install" {
   statement {
     effect = "Allow"
     actions = [
-      "elasticfilesystem:*",
-      "ecs:*",
-      "logs:*",
       "ec2:*",
+      "ecs:*",
+      "elasticfilesystem:*",
       "iam:PassRole",
+      "logs:*",
     ]
     resources = ["*"]
   }
