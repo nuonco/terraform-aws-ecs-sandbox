@@ -2,7 +2,12 @@ data "aws_iam_policy_document" "runner_install" {
   statement {
     effect = "Allow"
     actions = [
-      "ecs:*",
+      "ecs:CreateCapacityProvider",
+      "ecs:DescribeCapacityProviders",
+      "ecs:DescribeClusters",
+      "ecs:ListTagsForResource",
+      "ecs:PutClusterCapacityProviders",
+      "ecs:TagResource",
     ]
     resources = [module.ecs_cluster.cluster_arn, ]
   }
@@ -10,11 +15,50 @@ data "aws_iam_policy_document" "runner_install" {
   statement {
     effect = "Allow"
     actions = [
-      "ec2:*",
-      "ecs:*",
-      "elasticfilesystem:*",
-      "iam:PassRole",
-      "logs:*",
+      "ec2:AttachInternetGateway",
+      "ec2:AuthorizeSecurityGroupIngress",
+      "ec2:CreateSecurityGroup",
+      "ec2:CreateSubnet",
+      "ec2:CreateVpc",
+      "ec2:Describe*",
+      "ec2:ModifySubnetAttribute",
+      "ec2:ModifyVpcAttribute",
+    ]
+    resources = ["*"]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "autoscaling:CreateAutoScalingGroup",
+      "autoscaling:CreateLaunchConfiguration",
+      "autoscaling:Describe*",
+    ]
+    resources = ["*"]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "elasticfilesystem:DescribeAccessPoints",
+      "elasticfilesystem:DescribeFileSystems",
+    ]
+    resources = ["*"]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "iam:Passrole",
+    ]
+    resources = ["*"]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "logs:CreateLogGroup",
+      "logs:DescribeLogGroups",
+      "logs:FilterLogEvents",
     ]
     resources = ["*"]
   }
