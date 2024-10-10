@@ -2,19 +2,68 @@ data "aws_iam_policy_document" "runner_install" {
   statement {
     effect = "Allow"
     actions = [
-      "ecs:*",
+      "ecs:CreateCapacityProvider",
+      "ecs:DescribeCapacityProviders",
+      "ecs:DescribeClusters",
+      "ecs:ListTagsForResource",
+      "ecs:PutClusterCapacityProviders",
+      "ecs:TagResource"
     ]
     resources = [module.ecs_cluster.cluster_arn, ]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "elasticfilesystem:*",
+    ]
+    resources = ["*"]
   }
 
   statement {
     effect = "Allow"
     actions = [
-      "ec2:*",
-      "ecs:*",
+      "ec2:CreateNetworkAclEntry",
+      "ec2:DeleteNetworkAclEntry",
       "elasticfilesystem:*",
+    ]
+    resources = ["*"]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "iam:AttachRolePolicy",
+      "iam:CreateOpenIDConnectProvider",
+      "iam:CreatePolicy",
+      "iam:CreatePolicyVersion",
+      "iam:CreateRole",
+      "iam:CreateServiceLinkedRole",
+      "iam:GetOpenIDConnectProvider",
+      "iam:GetPolicy",
+      "iam:GetPolicyVersion",
+      "iam:GetRole",
+      "iam:GetRolePolicy",
+      "iam:ListAttachedRolePolicies",
+      "iam:ListRolePolicies",
       "iam:PassRole",
-      "logs:*",
+      "iam:PutRolePolicy",
+      "iam:TagOpenIDConnectProvider",
+      "iam:TagPolicy",
+      "iam:TagRole",
+      "iam:UpdateAssumeRolePolicy",
+    ]
+    resources = ["*"]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "logs:CreateLogGroup",
+      "logs:DescribeLogGroups",
+      "logs:ListTagsLogGroup",
+      "logs:PutRetentionPolicy",
+      "logs:TagLogGroup",
+      "logs:TagResource",
     ]
     resources = ["*"]
   }
