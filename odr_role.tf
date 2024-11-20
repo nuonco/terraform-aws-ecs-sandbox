@@ -30,7 +30,9 @@ module "odr_iam_role" {
   create_role       = true
   role_requires_mfa = false
 
-  role_name                       = "/nuon/odr-${local.prefix}"
+  role_name                       = "odr-${local.prefix}"
+  role_path = "/nuon/"
+
   create_custom_role_trust_policy = true
   custom_role_trust_policy        = data.aws_iam_policy_document.odr_trust.json
   custom_role_policy_arns         = [aws_iam_policy.odr.arn, ]
