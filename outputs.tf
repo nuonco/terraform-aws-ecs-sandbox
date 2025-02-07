@@ -1,5 +1,6 @@
 output "runner" {
   value = {
+    odr_iam_role         = module.odr_iam_role.iam_role_arn
     install_iam_role_arn = module.runner_install_iam_role.iam_role_arn
   }
   description = "A map of runner attributes: install_iam_role_arn"
