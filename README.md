@@ -4,7 +4,9 @@ AWS ECS sandbox for Nuon apps.
 
 ## Usage
 
-This module can be used via the [aws-ecs](github.com/nuonco/sandboxes/aws-ecs) project in [nuonco/sandboxes](github.com/nuonco/sandboxes).
+This module can be used via the
+[aws-ecs](https://github.com/nuonco/sandboxes/aws-ecs) project in
+[nuonco/sandboxes](https://github.com/nuonco/sandboxes).
 
 ```hcl
 resource "nuon_app" "my_ecs_app" {
@@ -13,7 +15,7 @@ resource "nuon_app" "my_ecs_app" {
 
 resource "nuon_app_sandbox" "main" {
   app_id            = nuon_app.my_ecs_app.id
-  terraform_version = "v1.6.3"
+  terraform_version = "v1.7.5"
   public_repo = {
     repo      = "nuonco/sandboxes"
     branch    = "main"
